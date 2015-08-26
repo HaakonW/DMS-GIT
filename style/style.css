@@ -1,0 +1,67 @@
+header{
+  color: white;
+  background-color: black;
+  text-align: center;
+  height: 50px;
+}
+#headerText{
+  position: relative;
+  top: 15px;
+}
+
+#search{
+  position: relative;
+  left: 60%;
+}
+#splashScreen{
+  width: 65%;
+  margin-left: auto;
+  margin-top: 5%;
+}
+
+#content{
+  margin-top: 5%;
+  margin-left: auto;
+  width: 85%;
+}
+
+#login{
+  position: relative;
+  left: 30%;
+  top: 15px;
+}
+
+.photoAlbum{
+  height: 190px;
+  width: 190px;
+}
+
+figure{
+  float: left;
+  border: solid;
+  border-width: thin;
+  text-align: center;
+  height: 230px;
+  width: 230px;
+  padding-top: 2%;
+  margin: 10px;
+  overflow: hidden;
+}
+
+footer{
+  color: white;
+  background-color: black;
+  text-align: left;
+  bottom:0px;
+  left: 5px;
+  right: 5px;
+  padding-left: 15px;
+  height: 30px;
+  position: fixed;
+
+}
+#footerText{
+  position: relative;
+  top: 10px;
+
+}
