@@ -1,6 +1,6 @@
 "pictures":[
-  { url: "photos/DSC01049.JPG", desciption: "City View" },
-  { url:"photos/DSC01066.JPG",  desciption:"Ferris Wheel" },
-  { url:"photos/DSC02511.jpg",  desciption: "A building in the forbidden city with extra long text"},
-  { url:"photos/DSC03810.jpg",  desciption:"City from Mt Gravatt lockout" },
-  { url:"photos/DSC05750.jpg",  desciption: "Sun rise" }];
+  { "url": "photos/DSC01049.JPG", "desc": "City View" },
+  { "url":"photos/DSC01066.JPG",  "desc":"Ferris Wheel" },
+  { "url":"photos/DSC02511.jpg",  "desc": "A building in the forbidden city with extra long text"},
+  { "url":"photos/DSC03810.jpg",  "desc":"City from Mt Gravatt lockout" },
+  { "url":"photos/DSC05750.jpg",  "desc": "Sun rise" }];
