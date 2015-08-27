@@ -28,6 +28,7 @@ $(document).ready(function(){
 function search(pictures){
   var inData=$("#searchField").val();
   var orgSearch = inData;
+  console.log(orgSearch.length);
 
   inData = inData.trim();
   inData = inData.toLowerCase();
@@ -53,7 +54,7 @@ function search(pictures){
         hit = true; //Set true so next if test is not printing
       } // end if
     }//end for
-    if (!hit) picArea.innerHTML += "No matching photo for '' " + orgSearch +" ''"; //Last alternative, no hits from the searchField
+    if (!hit) picArea.innerHTML += "No matching photo for ''" + orgSearch +"''"; //Last alternative, no hits from the searchField
   }// end else
 }//end search
 
