@@ -16,6 +16,7 @@ $(document).ready(function(){
   $("#backSplashBtn").click(function(){
     $("#content").slideUp(1000);
     $("#spinner").show();
+    $("#menuBar").hide();
     $("#splashContent").slideDown(1000);
   });
 
@@ -52,7 +53,7 @@ function search(pictures){
         var n = str.indexOf(inData); //Check if the search word is in the array
         if(n != -1 ) {
           var pic =
-          "<a href='" + pictures[i].url + "'data-lightbox='" + pictures[i].url + "' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
+          "<a href='" + pictures[i].url + "'data-lightbox='myPhoto' data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
           picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
           pictures[i].desc + "</figcaption></figure>";
           responseContainer.innerHTML = "Your search for " + orgSearch;
@@ -65,9 +66,9 @@ function search(pictures){
 
 function fillAlbum(pictures){
   for (var i = 0; i < pictures.length; i++)  {
-      var pic = "<img class='photoAlbum' src='" + pictures[i].url + "'>";
-      picArea.innerHTML += "<figure>" + pic +
-      "<figcaption>" + pictures[i].desc + "</figcaption></figure>";
+      var pic = "<a href='" + pictures[i].url + "'data-lightbox='" + "myPhoto" + "'data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
+      picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
+      pictures[i].desc + "</figcaption></figure>";
   }
 }
 
