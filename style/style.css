@@ -1,34 +1,138 @@
+
 header{
   color: white;
   background-color: black;
   text-align: center;
   height: 50px;
 }
+#login{
+  position: relative;
+  left: 30%;
+  top: 15px;
+}
 #headerText{
   position: relative;
   top: 15px;
+}
+#spinner{
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  left: 50px;
+  top: 15px;
+  border-radius: 10px;
+  background-color: white;
+  animation: spinIt 7s;
+  animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes spinIt{
+  0%{transform: rotate(deg);}
+  10%{transform: rotate(36deg);background-color: red;}
+  20%{transform: rotate(72deg);left: 80%}
+  30%{transform: rotate(108deg);background-color: blue;}
+  40%{transform: rotate(144deg);}
+  50%{transform: rotate(180deg);background-color: yellow;}
+  60%{transform: rotate(216deg);}
+  70%{transform: rotate(252deg);background-color: green}
+  80%{transform: rotate(288deg); }
+  90%{transform: rotate(324deg);background-color: pink}
+  100%{transform: rotate(360deg);}
 }
 
 #search{
   position: relative;
   left: 60%;
 }
+
+/******SIDEMENU********/
+#menuBar{
+  width: 17%;
+  margin-top: 4%;
+  margin-left: -14%;
+  float: left;
+
+}
+.sideMenu{
+  background-color: #006699;
+  transition: transform 2s;
+  margin-bottom: 2%;
+  padding: 3%;
+  border-radius: 20px;
+  text-align: right;
+
+}
+
+.sideMenu:hover{
+  -webkit-transform:translateX(40%);
+  transform: translateX(40%);
+}
+.menuIcon{
+  float: right;
+  margin-right: 5%;
+  height:22px;
+  width:22px
+}
+.menuText{
+color: white;
+padding-right: 10%;
+}
+
+
+/******SIDEMENU END********/
+#splashContent{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
 #splashScreen{
-  width: 65%;
-  margin-left: auto;
+  background-color: #996699;
   margin-top: 5%;
+  text-align: center;
+  padding: 5px;
 }
 
+#btnProceed{
+  text-decoration: none;
+  color: white;
+}
+
+#loader{
+height: 25px;
+
+}
+#loadBar{
+  position: fixed;
+  animation: loadingPic 3s;
+  animation-iteration-count: infinite;
+  width: 120px;
+  background-color: #006699;
+  color: white;
+  font-size: 22px;
+  text-align: center;
+}
+
+
+@-webkit-keyframes loadingPic{
+0% {left:100px;}
+10% {left:200px;}
+20% {left:300px;}
+30% {left:400px;}
+40% {left:500px;}
+50% {left:600px;}
+60% {left:700px;}
+70% {left:800px;}
+80% {left:850px;}
+90% {left:900px;}
+100% {left: 1600px;}
+}
+/******content********/
 #content{
-  margin-top: 5%;
-  margin-left: auto;
-  width: 85%;
-}
-
-#login{
-  position: relative;
-  left: 30%;
-  top: 15px;
+  margin-top: 1%;
+  margin-right: 10%;
+  width: 75%;
+  float: right;
 }
 
 .photoAlbum{
@@ -47,7 +151,7 @@ figure{
   margin: 10px;
   overflow: hidden;
 }
-
+/******Footer********/
 footer{
   color: white;
   background-color: black;

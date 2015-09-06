@@ -1,16 +1,22 @@
 $(document).ready(function(){
 
   $("#content").hide();
+  $("#menuBar").hide();
+
   $("#login").click(function(){alert("This function is not ready!"); });
 
   $("#btnProceed").click(function(){
-    $("#splashScreen").slideUp(1000);
+    $("#splashContent").slideUp(1000);
+    $("#spinner").hide();
     $("#content").slideDown(1500);
+    $("#menuBar").slideDown(2000);
+
   });
 
   $("#backSplashBtn").click(function(){
     $("#content").slideUp(1000);
-    $("#splashScreen").slideDown(1000);
+    $("#spinner").show();
+    $("#splashContent").slideDown(1000);
   });
 
   function searchData(){
@@ -45,7 +51,8 @@ function search(pictures){
         str = str.toLowerCase();
         var n = str.indexOf(inData); //Check if the search word is in the array
         if(n != -1 ) {
-          var pic = "<a href='" + pictures[i].url + "'><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
+          var pic =
+          "<a href='" + pictures[i].url + "'data-lightbox='" + pictures[i].url + "' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
           picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
           pictures[i].desc + "</figcaption></figure>";
           responseContainer.innerHTML = "Your search for " + orgSearch;

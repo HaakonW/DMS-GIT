@@ -2,26 +2,50 @@
 <html>
 <head>
 	<title>My Photo Album</title>
+	<link href="lightbox2-master/dist/css/lightbox.css" rel="stylesheet">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
 	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<script type="text/javascript" src="js/script.js"></script>
+
 </head>
 
 <body>
 	<header>
+		<div id="spinner"></div>
 		<span id="headerText">
 			My Photo Album
 		</span>
 		<button id="login">Login</button>
 	</header>
 
+<div id="splashContent">
 	<div id="splashScreen">
-		<h1>Splash screen</h1>
-		This is the intro page with somehting flashy<br>
-		Click to load <a href="#" id="btnProceed">photos</a>
+		<a href="#" id="btnProceed">
+			<h1>Splash screen</h1>Click to view </a>
 	</div>
+	<div id="loader">
+		<span id="loadBar">Loading</span>
+
+	</div>
+</div>
+
+	<div id="menuBar">
+	<div class="sideMenu" id="firstEntry">
+			<span class="menuText">Home</span>
+			<img class="menuIcon" src="images/home.png" alt="">
+		</div>
+		<div class="sideMenu" id="secondEntry">
+			<img class="menuIcon" src="images/two.png" alt="">
+				<span class="menuText">Second</span>
+			</div>
+			<div class="sideMenu" id="thirdEntry">
+				<img class="menuIcon" src="images/three.png" alt="">
+					<span class="menuText">Third</span>
+				</div>
+	 </div><!-- End sidemenu -->
 
 	<div id="content">
+
 		<div id="backSplash">
 			<a href="#" id="backSplashBtn"><img src="/images/left.jpg" alt="" height="50px" width="50px"></a>
 		</div>
@@ -34,46 +58,49 @@
 
 <div id="picArea">
 		<figure id="numberOne">
-			<a href="photos/DSC01049.JPG">
-				<img id="picOne" class="photoAlbum" src="photos/DSC01049.JPG" alt="city View" >
+			<a href="photos/DSC01049.JPG" data-lightbox="photots/DSC01049.JPG" data-title="City View">
+				<img id="picOne" class="photoAlbum" src="photos/DSC01049.JPG" alt="City View" >
 			</a>
 			<figcaption>City View</figcaption>
 		</figure>
 
 		<figure id="nubmerTwo">
-			<a href="photos/DSC01066.JPG">
-				<img id="picTwo" class="photoAlbum" src="photos/DSC01066.JPG" alt="Ferris Wheel" >
+			<a href="photos/DSC01066.JPG" data-lightbox="DSC01066.JPG" data-title="Ferris Wheel">
+				<img id="picTwo" class="photoAlbum" src="photos/DSC01066.JPG" alt="Ferris Wheel"  >
 			</a>
 			<figcaption>Ferris Wheel</figcaption>
 		</figure>
 
 		<figure id="numberThree">
-			<a href="photos/DSC02511.jpg">
+			<a href="photos/DSC02511.jpg" data-lightbox="DSC02511.jpg" data-title="A building in the forbidden city with extra long text">
 				<img class="photoAlbum" src="photos/DSC02511.jpg" alt="A building in the forbidden city with extra long text" >
 			</a>
 			<figcaption>A building in the forbidden city with extra long text</figcaption>
 		</figure>
 
 		<figure id="numberFour">
-			<a href="photos/DSC03810.jpg">
+			<a href="photos/DSC03810.jpg" data-lightbox="DSC03810.jpg" data-title="City from Mt Gravatt lockout">
 				<img class="photoAlbum" src="photos/DSC03810.jpg" alt="City from Mt Gravatt lockout">
 			</a>
 			<figcaption>City from Mt Gravatt lookout</figcaption>
 		</figure>
 
 		<figure id="numberFive">
-			<a href="photos/DSC05750.jpg">
+			<a href="photos/DSC05750.jpg" data-lightbox="DSC05750.jpg" data-title="Sun rise">
 				<img class="photoAlbum" src="photos/DSC05750.jpg" alt="Sun rise">
 			</a>
 			<figcaption>Sun rise</figcaption>
 		</figure>
 	</div>
+
 </div>
+
 
 	<footer>
 		<span id="footerText">
 			By Haakon Winther
 		</span>
 	</footer>
+	<script src="lightbox2-master/dist/js/lightbox.js"></script>
 </body>
 </html>
