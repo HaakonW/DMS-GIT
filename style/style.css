@@ -76,7 +76,7 @@ header{
   text-align: right;
 
 }
-
+/*****************SIDEMENU HOVER*****************/
 .sideMenu:hover{
   -webkit-transform:translateX(40%);
   transform: translateX(40%);
