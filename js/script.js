@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
+    getFlicker();
   $("#content").hide();
   $("#menuBar").hide();
-
   $("#login").click(function(){alert("This function is not ready!"); });
 
   $("#btnProceed").click(function(){
@@ -10,7 +10,6 @@ $(document).ready(function(){
     $("#spinner").hide();
     $("#content").slideDown(1500);
     $("#menuBar").slideDown(2000);
-
   });
 
   $("#backSplashBtn").click(function(){
@@ -73,3 +72,25 @@ function fillAlbum(pictures){
 }
 
 ////////////////////////////// 2.0 /////////////////////////
+function getFlicker(){
+  apiKey = 'dc140afe3fd3a251c2fdf9dcd835be5c';
+
+  var url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=";
+  url+= apiKey + "&per_page=20&format=json&nojsoncallback=1";
+
+  $.get(url, function(data){
+    getUrl(data);
+  });
+}
+
+function getUrl(data){
+  for (var i = 0; i < data.photos.photo.length; i++) {
+    console.log(data.photos.photo[i].id);
+    temp = data.photos.photo[i];
+    getSize = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key="+apiKey+"&photo_id="+temp.id+"&format=rest";
+    console.log(getSize);
+    $.get(getSize, function(data) {
+    console.log(data);
+  })
+  }
+}
