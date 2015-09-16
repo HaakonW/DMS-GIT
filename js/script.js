@@ -30,8 +30,8 @@ $(document).ready(function(){
 }); //End document.ready
 
 ///////// BIG FUNCTIONS///////////
-function search(pictures){
-  var inData=$("#searchField").val();
+function search(){
+  inData=$("#searchField").val();
   var orgSearch = inData;
 
   inData = inData.trim();
@@ -45,21 +45,25 @@ function search(pictures){
   else // User search for something
   {
     picArea.innerHTML = "";
-    var hit = false; //Boolean to check for a hit in the array
-    for (var i = 0; i < pictures.length; i++){
-      var str = pictures[i].desc;
-        str = str.toLowerCase();
-        var n = str.indexOf(inData); //Check if the search word is in the array
-        if(n != -1 ) {
-          var pic =
-          "<a href='" + pictures[i].url + "'data-lightbox='myPhoto' data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
-          picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
-          pictures[i].desc + "</figcaption></figure>";
-          responseContainer.innerHTML = "Your search for " + orgSearch;
-          hit = true; //Set true so next if test is not printing
-      } // end if
-    }//end for
-     if (!hit) picArea.innerHTML += "No matching photo for ''" + orgSearch +"''"; //Last alternative, no hits from the searchField
+    var hit = false;
+    console.log("Searching for photos Equal to " + orgSearch);
+    searchFlickr(inData);
+    // picArea.innerHTML = "";
+    // var hit = false; //Boolean to check for a hit in the array
+    // for (var i = 0; i < pictures.length; i++){
+    //   var str = pictures[i].desc;
+    //     str = str.toLowerCase();
+    //     var n = str.indexOf(inData); //Check if the search word is in the array
+    //     if(n != -1 ) {
+    //       var pic =
+    //       "<a href='" + pictures[i].url + "'data-lightbox='myPhoto' data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
+    //       picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
+    //       pictures[i].desc + "</figcaption></figure>";
+    //       responseContainer.innerHTML = "Your search for " + orgSearch;
+    //       hit = true; //Set true so next if test is not printing
+    //   } // end if
+    // }//end for
+     //if (!hit) picArea.innerHTML += "No matching photo for ''" + orgSearch +"''"; //Last alternative, no hits from the searchField
    }// end else
 }//end search
 
@@ -72,25 +76,50 @@ function fillAlbum(pictures){
 }
 
 ////////////////////////////// 2.0 /////////////////////////
-function getFlicker(){
+function getFlicker(){                                  //GETS THE 20 MOST INTERETSTING PICTURES
   apiKey = 'dc140afe3fd3a251c2fdf9dcd835be5c';
-
   var url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=";
   url+= apiKey + "&per_page=20&format=json&nojsoncallback=1";
+  getUrlFlicker(url);                                   //CALLING getUrlFlicker WITH the new String
+}
 
+function searchFlickr(indata){
+  url =  "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=";
+  url += apiKey + "&text=" + indata + "&per_page=20&format=json&nojsoncallback=1";
+  getUrlFlicker(url);
+}
+
+function getUrlFlicker(url){
   $.get(url, function(data){
     getUrl(data);
+    console.log(data);
   });
 }
 
 function getUrl(data){
   for (var i = 0; i < data.photos.photo.length; i++) {
-    console.log(data.photos.photo[i].id);
+   //console.log(data.photos.photo[i].id);
     temp = data.photos.photo[i];
-    getSize = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key="+apiKey+"&photo_id="+temp.id+"&format=rest";
-    console.log(getSize);
+    getSize = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key="+apiKey+"&photo_id="+temp.id+"&format=json&nojsoncallback=1";
     $.get(getSize, function(data) {
+    //console.log("THIS IS WEEK 8:" + data.sizes.size[data.sizes.size.length-1].source);
+    bigPhoto = data.sizes.size[data.sizes.size.length-1].source;
     console.log(data);
-  })
+    desc = "hei";
+    thumbnail = data.sizes.size[3].source; // DIRTY?
+    console.log(thumbnail);
+    var pic = "<a href= '" + bigPhoto + "'data-lightbox'" + "myPhoto" + "'data-title'" + desc +
+              "'><img class='photoAlbum' src='" + thumbnail + "'></a>";
+    picArea.innerHTML+= "<figure>" + pic + "<figcaption>" + desc + "</figcaption></figure>" ;
+
+  });
+  }
+}
+
+function fillAlbum(pictures){
+  for (var i = 0; i < pictures.length; i++)  {
+      var pic = "<a href='" + pictures[i].url + "'data-lightbox='" + "myPhoto" + "'data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
+      picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
+      pictures[i].desc + "</figcaption></figure>";
   }
 }
