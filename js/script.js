@@ -115,7 +115,7 @@ function asdf(getSize, test){
   desc = test;
   //console.log(data);
   //console.log(thumbnail);
-  var pic = "<a href= '" + bigPhoto + "'data-lightbox'" + "myPhoto" + "'data-title'" + desc +
+  var pic = "<a href= '" + bigPhoto + "'data-lightbox='" + "myPhoto" + "'data-title='" + desc +
             "'><img class='photoAlbum' src='" + thumbnail + "'></a>";
   picArea.innerHTML+= "<figure>" + pic + "<figcaption>" + desc + "</figcaption></figure>" ;
 });
