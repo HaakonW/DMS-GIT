@@ -91,29 +91,34 @@ function searchFlickr(indata){
 
 function getUrlFlicker(url){
   $.get(url, function(data){
-    getUrl(data);
+    for (var i = 0; i < data.photos.photo.length; i++) {
+     //console.log(data.photos.photo[i].id);
+      temp = data.photos.photo[i];
+      //console.log(data.photos.photo[i].title);
+      test = data.photos.photo[i].title;
+      getSize = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key="+apiKey+"&photo_id="+temp.id+"&format=json&nojsoncallback=1";
+      asdf(getSize,test);
+    }
     console.log(data);
   });
 }
 
 function getUrl(data){
-  for (var i = 0; i < data.photos.photo.length; i++) {
-   //console.log(data.photos.photo[i].id);
-    temp = data.photos.photo[i];
-    getSize = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key="+apiKey+"&photo_id="+temp.id+"&format=json&nojsoncallback=1";
-    $.get(getSize, function(data) {
-    //console.log("THIS IS WEEK 8:" + data.sizes.size[data.sizes.size.length-1].source);
-    bigPhoto = data.sizes.size[data.sizes.size.length-1].source;
-    console.log(data);
-    desc = "hei";
-    thumbnail = data.sizes.size[3].source; // DIRTY?
-    console.log(thumbnail);
-    var pic = "<a href= '" + bigPhoto + "'data-lightbox'" + "myPhoto" + "'data-title'" + desc +
-              "'><img class='photoAlbum' src='" + thumbnail + "'></a>";
-    picArea.innerHTML+= "<figure>" + pic + "<figcaption>" + desc + "</figcaption></figure>" ;
 
-  });
-  }
+}
+
+function asdf(getSize, test){
+  $.get(getSize, function(data) {
+  //console.log("THIS IS WEEK 8:" + data.sizes.size[data.sizes.size.length-1].source);
+  bigPhoto = data.sizes.size[data.sizes.size.length-1].source;
+  thumbnail = data.sizes.size[3].source; // DIRTY?
+  desc = test;
+  //console.log(data);
+  //console.log(thumbnail);
+  var pic = "<a href= '" + bigPhoto + "'data-lightbox'" + "myPhoto" + "'data-title'" + desc +
+            "'><img class='photoAlbum' src='" + thumbnail + "'></a>";
+  picArea.innerHTML+= "<figure>" + pic + "<figcaption>" + desc + "</figcaption></figure>" ;
+});
 }
 
 function fillAlbum(pictures){
