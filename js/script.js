@@ -45,8 +45,6 @@ function search(){
   else // User search for something
   {
     picArea.innerHTML = "";
-    var hit = false;
-    console.log("Searching for photos Equal to " + orgSearch);
     searchFlickr(inData);
     // picArea.innerHTML = "";
     // var hit = false; //Boolean to check for a hit in the array
@@ -67,13 +65,13 @@ function search(){
    }// end else
 }//end search
 
-function fillAlbum(pictures){
-  for (var i = 0; i < pictures.length; i++)  {
-      var pic = "<a href='" + pictures[i].url + "'data-lightbox='" + "myPhoto" + "'data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
-      picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
-      pictures[i].desc + "</figcaption></figure>";
-  }
-}
+// function fillAlbum(pictures){
+//   for (var i = 0; i < pictures.length; i++)  {
+//       var pic = "<a href='" + pictures[i].url + "'data-lightbox='" + "myPhoto" + "'data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
+//       picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
+//       pictures[i].desc + "</figcaption></figure>";
+//   }
+// }
 
 ////////////////////////////// 2.0 /////////////////////////
 function getFlicker(){                                  //GETS THE 20 MOST INTERETSTING PICTURES
@@ -92,39 +90,33 @@ function searchFlickr(indata){
 function getUrlFlicker(url){
   $.get(url, function(data){
     for (var i = 0; i < data.photos.photo.length; i++) {
-     //console.log(data.photos.photo[i].id);
-      temp = data.photos.photo[i];
-      //console.log(data.photos.photo[i].title);
-      test = data.photos.photo[i].title;
-      getSize = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key="+apiKey+"&photo_id="+temp.id+"&format=json&nojsoncallback=1";
-      asdf(getSize,test);
+      id = data.photos.photo[i].id;
+      description = data.photos.photo[i].title;
+      getSize = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=";
+      getSize += apiKey+"&photo_id="+id+"&format=json&nojsoncallback=1";
+      asdf(getSize,description);
     }
-    console.log(data);
   });
 }
 
-function getUrl(data){
-
-}
-
-function asdf(getSize, test){
+function asdf(getSize, description){
   $.get(getSize, function(data) {
   //console.log("THIS IS WEEK 8:" + data.sizes.size[data.sizes.size.length-1].source);
   bigPhoto = data.sizes.size[data.sizes.size.length-1].source;
   thumbnail = data.sizes.size[3].source; // DIRTY?
-  desc = test;
+  desc = description;
   //console.log(data);
   //console.log(thumbnail);
   var pic = "<a href= '" + bigPhoto + "'data-lightbox='" + "myPhoto" + "'data-title='" + desc +
             "'><img class='photoAlbum' src='" + thumbnail + "'></a>";
   picArea.innerHTML+= "<figure>" + pic + "<figcaption>" + desc + "</figcaption></figure>" ;
-});
+  });
 }
 
-function fillAlbum(pictures){
-  for (var i = 0; i < pictures.length; i++)  {
-      var pic = "<a href='" + pictures[i].url + "'data-lightbox='" + "myPhoto" + "'data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
-      picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
-      pictures[i].desc + "</figcaption></figure>";
-  }
-}
+// function fillAlbum(pictures){
+//   for (var i = 0; i < pictures.length; i++)  {
+//       var pic = "<a href='" + pictures[i].url + "'data-lightbox='" + "myPhoto" + "'data-title='" + pictures[i].desc +"' ><img class='photoAlbum' src='" + pictures[i].url + "'></a>";
+//       picArea.innerHTML += "<figure>" + pic + "<figcaption>" +
+//       pictures[i].desc + "</figcaption></figure>";
+//   }
+// }
