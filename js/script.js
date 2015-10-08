@@ -103,10 +103,14 @@ function asdf(getSize, description){
   $.get(getSize, function(data) {
   //console.log("THIS IS WEEK 8:" + data.sizes.size[data.sizes.size.length-1].source);
   bigPhoto = data.sizes.size[data.sizes.size.length-1].source;
-  thumbnail = data.sizes.size[3].source; // DIRTY?
+  console.log(data.sizes.size);
+  for (var i = 0; i < data.sizes.size.length; i++) {
+    if(data.sizes.size[i].label == "Thumbnail"){
+      thumbnail = data.sizes.size[i].source;
+    }
+  }
+
   desc = description;
-  //console.log(data);
-  //console.log(thumbnail);
   var pic = "<a href= '" + bigPhoto + "'data-lightbox='" + "myPhoto" + "'data-title='" + desc +
             "'><img class='photoAlbum' src='" + thumbnail + "'></a>";
   picArea.innerHTML+= "<figure>" + pic + "<figcaption>" + desc + "</figcaption></figure>" ;
